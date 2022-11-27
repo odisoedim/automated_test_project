@@ -21,7 +21,7 @@ public class Base {
 	{
 		prop= new Properties();
 		String path=System.getProperty("user.dir");
-		InputStream fis = new FileInputStream(path+"\\src\\main\\java\\resource\\application.properties");
+		InputStream fis = new FileInputStream(path+"/data.properties");
 		prop.load(fis);
 		String selectedBrowser=prop.getProperty("browser");
 
