@@ -1,4 +1,7 @@
 package test;
+import org.apache.commons.io.FileUtils;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
 import org.testng.annotations.Test;
 
 import com.opencsv.exceptions.CsvException;
@@ -11,6 +14,7 @@ import org.testng.annotations.BeforeTest;
 
 import static org.testng.Assert.assertEquals;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -19,6 +23,8 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.annotations.DataProvider;
+
+
 
 
 public class AddNewEntry extends Base{
@@ -33,7 +39,7 @@ public class AddNewEntry extends Base{
   @Test(dataProvider = "getTestData")
   public void addNewEntry(String entryType, String fname, String lname, String addline1, String city, 
 		  String province, String country, String postCode,
-		  String pType, String phone) throws IOException, InterruptedException{
+		  String pType, String phone) throws Exception {
 		driver.get(prop.getProperty("baseUrl"));
 	  driver.findElement(By.linkText("Add New Entry")).click();
 		Select addressType = new Select(driver.findElement(By.id("addr_type")));
@@ -53,6 +59,8 @@ public class AddNewEntry extends Base{
 		String actualText = driver.findElement(By.xpath("//h2[contains(text(),'The new address book entry was added successfully')]")).getText();
 		assertEquals(expectedText , actualText);
 		Reporter.log("Executed Add New Entry method");
+
+	  this.screenCapture(fname);
   }
   
 
@@ -61,7 +69,13 @@ public class AddNewEntry extends Base{
 		ArrayList<Object[]> testData = TestUtils.getDataReadCSV();
 		return testData.iterator();
   }
-  
+
+
+	public void screenCapture( String name ) throws Exception {
+		File screenshotFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
+		String screenshotLocation= System.getProperty("user.dir")+"\\ScreenShots\\"+name+".png";
+		FileUtils.copyFile(screenshotFile ,new File(screenshotLocation));
+	}
   @AfterTest
 	public void tearDown() throws IOException
 	{

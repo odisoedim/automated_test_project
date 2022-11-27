@@ -27,11 +27,9 @@ public class Base {
 
 		if(selectedBrowser.equalsIgnoreCase("chrome"))
 		{
-
 			System.out.println("Before Test method is called for "+selectedBrowser);
 			WebDriverManager.chromedriver().setup();
 			driver=new ChromeDriver();
-//			driver.get("https://c354-192-159-177-240.ngrok.io/index.php");
 		}
 		else if(selectedBrowser.equals("firefox"))
 		{

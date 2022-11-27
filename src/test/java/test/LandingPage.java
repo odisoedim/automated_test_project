@@ -25,7 +25,7 @@ public class LandingPage extends Base{
 	// Verify the title of the application
 	@Test
 	void testTitle() {
-		driver.get(prop.getProperty("baseUrl"));
+
 		String expectedTitle = "Address Book";
 		String actualTitle = driver.getTitle();
 		assertEquals(expectedTitle, actualTitle);
