@@ -15,19 +15,21 @@ import java.io.IOException;
 public class LandingPage extends Base{
 	WebDriver driver;
 	
-	// Verify the title of the application
-	@Test
-	void testTitle() {
-	String expectedTitle = "Address Book";
-	String actualTitle = driver.getTitle();
-	assertEquals(expectedTitle, actualTitle);
-	}
+
 
 	@BeforeTest
 	public void beforeTest() throws IOException {
 		driver = initializeDriver();
 	}
 
+	// Verify the title of the application
+	@Test
+	void testTitle() {
+		driver.get(prop.getProperty("baseUrl"));
+		String expectedTitle = "Address Book";
+		String actualTitle = driver.getTitle();
+		assertEquals(expectedTitle, actualTitle);
+	}
 	@AfterTest
 	public void afterTest() {
 		driver.quit();
