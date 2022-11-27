@@ -34,7 +34,7 @@ public class AddNewEntry extends Base{
   public void addNewEntry(String entryType, String fname, String lname, String addline1, String city, 
 		  String province, String country, String postCode,
 		  String pType, String phone) throws IOException, InterruptedException{
-	  driver.get(prop.getProperty("baseUrl"));
+		driver.get(prop.getProperty("baseUrl"));
 	  driver.findElement(By.linkText("Add New Entry")).click();
 		Select addressType = new Select(driver.findElement(By.id("addr_type")));
 		addressType.selectByValue(entryType);

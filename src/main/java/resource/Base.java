@@ -2,6 +2,7 @@ package resource;
 
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.Properties;
 import java.util.concurrent.TimeUnit;
 
@@ -20,16 +21,17 @@ public class Base {
 	{
 		prop= new Properties();
 		String path=System.getProperty("user.dir");
-		FileInputStream fis = new FileInputStream(path+"\\src\\main\\java\\resource\\application.properties");
+		InputStream fis = new FileInputStream(path+"\\src\\main\\java\\resource\\application.properties");
 		prop.load(fis);
 		String selectedBrowser=prop.getProperty("browser");
-		
+
 		if(selectedBrowser.equalsIgnoreCase("chrome"))
 		{
 
 			System.out.println("Before Test method is called for "+selectedBrowser);
 			WebDriverManager.chromedriver().setup();
 			driver=new ChromeDriver();
+//			driver.get("https://c354-192-159-177-240.ngrok.io/index.php");
 		}
 		else if(selectedBrowser.equals("firefox"))
 		{
